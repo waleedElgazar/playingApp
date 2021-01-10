@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    android:layout_margin="2dp"
+    app:cardCornerRadius="15dp">
+
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:id="@+id/mostViewed_image"
+            android:src="@drawable/screen" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mostViewed_title"
+            android:text="MAC"
+            android:layout_toRightOf="@id/mostViewed_image"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="24sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@id/mostViewed_image"
+            android:layout_below="@id/mostViewed_title"
+            android:text="dlkfdsj lksdflk lskmdkfm lkdf lkjdlkaj jknjdn jndljas lkadskl lkjad "
+            android:id="@+id/most_viewed_desc"/>
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

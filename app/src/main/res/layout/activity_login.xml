@@ -77,6 +77,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:id="@+id/rememberCheckedBox"
+                android:onClick="checkRemember"
                 android:text="remember me" />
 
             <Button

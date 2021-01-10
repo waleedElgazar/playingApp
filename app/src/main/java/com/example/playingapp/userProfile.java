@@ -3,7 +3,11 @@ package com.example.playingapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -15,13 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class userProfile extends AppCompatActivity {
 
-    TextInputEditText edtName,edtPassword,edtEmail,edtPhone;
     TextInputLayout name,password,email,phonee;
     FirebaseDatabase database;
     DatabaseReference reference;
+    String dbName,dbPassword,dbEmail,dbPhone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_user_profile);
         name=findViewById(R.id.userName);
         password=findViewById(R.id.userPassword);
@@ -29,26 +34,58 @@ public class userProfile extends AppCompatActivity {
         phonee=findViewById(R.id.userPhone);
         database=FirebaseDatabase.getInstance();
         reference=database.getReference("user");
-        String phone=getIntent().getStringExtra("phone");
-        edtName=findViewById(R.id.usrname);
-        edtEmail=findViewById(R.id.usrEmail);
-        edtPhone=findViewById(R.id.usrPhone);
-        edtPassword=findViewById(R.id.usrPassword);
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user=snapshot.child(phone).getValue(User.class);
-                edtName.setText(user.getName());
-                edtEmail.setText(user.getEmail());
-                edtPassword.setText(user.getPassword());
-                edtPhone.setText(user.getPhone());
-            }
+        showUserData();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+    }
 
-            }
-        });
+    public void showUserData(){
+        Intent intent=getIntent();
+        dbEmail=intent.getStringExtra("email");
+        dbName=intent.getStringExtra("name");
+        dbPassword=intent.getStringExtra("password");
+        dbPhone=intent.getStringExtra("phone");
+        name.getEditText().setText(dbName);
+        email.getEditText().setText(dbEmail);
+        password.getEditText().setText(dbPassword);
+        phonee.getEditText().setText(dbPhone);
+    }
 
+    public void update(View v){
+        if(nameChanged()||passwordChanged()||emailChanged()||phoneChanged()){
+            Toast.makeText(this, "data changed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "data hadn't been changed", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean phoneChanged() {
+        if(!dbPhone.equals(phonee.getEditText().getText().toString())){
+            phonee.setError("phone number can't be changed until now");
+        }
+        return false;
+    }
+
+    private boolean nameChanged() {
+        if(!dbName.equals(name.getEditText().getText().toString())){
+            reference.child(dbPhone).child("name").setValue(name.getEditText().getText().toString());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean passwordChanged() {
+        if(!dbPassword.equals(password.getEditText().getText().toString())){
+            reference.child(dbPhone).child("password").setValue(password.getEditText().getText().toString());
+            return true;
+        }
+        return false;
+    }
+
+    private boolean emailChanged() {
+        if(!dbEmail.equals(email.getEditText().getText().toString())){
+            reference.child(dbPhone).child("email").setValue(email.getEditText().getText().toString());
+            return true;
+        }
+        return false;
     }
 }

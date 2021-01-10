@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_register);
         top= AnimationUtils.loadAnimation(this,R.anim.top_anim);
         down= AnimationUtils.loadAnimation(this,R.anim.down_anim);
@@ -115,9 +117,8 @@ public class register extends AppCompatActivity {
         ename=name.getEditText().getText().toString();
         ephone=phone.getEditText().getText().toString();
         eemail=email.getEditText().getText().toString();
-        User user=new User(ename,eemail,ephone,epassword,erepassword);
+        User user=new User(ename,eemail,ephone,epassword);
         reference.child(ephone).setValue(user);
-        Toast.makeText(this, "user "+user.toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void haveAccount(View v){
