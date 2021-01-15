@@ -116,4 +116,8 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
+    public void forgetPassword(View view) {
+        startActivity(new Intent(this,forget_password.class));
+    }
 }

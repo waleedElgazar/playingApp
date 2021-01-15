@@ -41,4 +41,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database:19.6.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.chaos.view:pinview:1.4.4'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation platform('com.google.firebase:firebase-bom:26.3.0')
+
 }

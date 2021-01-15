@@ -119,6 +119,8 @@ public class register extends AppCompatActivity {
         eemail=email.getEditText().getText().toString();
         User user=new User(ename,eemail,ephone,epassword);
         reference.child(ephone).setValue(user);
+        Intent intent=new Intent(this,login.class);
+        startActivity(intent);
     }
 
     public void haveAccount(View v){

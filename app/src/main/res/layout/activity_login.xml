@@ -49,7 +49,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="user name">
+                android:hint="user phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -101,6 +101,7 @@
                     android:layout_gravity="left"
                     android:layout_margin="10dp"
                     android:text="forget password?"
+                    android:onClick="forgetPassword"
                     android:textColor="#111111"
                     android:textSize="10sp" />
 

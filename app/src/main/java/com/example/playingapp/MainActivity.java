@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(MainActivity.this,userDashBoard.class);
+                Intent intent=new Intent(MainActivity.this,forget_password.class);
                 startActivity(intent);
                 finish();
             }
